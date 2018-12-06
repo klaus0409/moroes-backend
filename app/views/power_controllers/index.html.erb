@@ -1,0 +1,38 @@
+<h1>控制器</h1>
+
+<div class="m-b-10">
+  <%= link_to '添加控制器', new_power_controller_path, class: "btn btn-default" %>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>唯一标示</th>
+      <th>名称</th>
+      <th>博物馆</th>
+      <th>设备类型</th>
+      <th>地址</th>
+      <th>状态</th>
+      <th>备注</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @power_controllers.each do |power_controller| %>
+      <tr>
+        <td><%= power_controller.pid %></td>
+        <td><%= power_controller.name %></td>
+        <td><%= link_to power_controller.museum.name, museum_path(power_controller.museum_id) %></td>
+        <td><%= power_controller.device_type %></td>
+        <td><%= power_controller.address %></td>
+        <td><%= power_controller.status_text %></td>
+        <td><%= power_controller.note %></td>
+        <td><%= link_to '详情', power_controller %></td>
+        <td><%= link_to '编辑', edit_power_controller_path(power_controller) %></td>
+        <td><%= link_to '删除', power_controller, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

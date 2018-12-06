@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(user) do |form| %>
+    <%= form.text_field :email %>
+    <%= form.password_field :password, help: "如果不修改密码，可以不填" %>
+    <%= form.password_field :password_confirmation %>
+    <%= form.text_field :role %>
+    <%= form.select :museum_id, Museum.all.map{|m| [m.name, m.id]}, include_blank: true %>
+    <%= form.submit %>
+<% end %>

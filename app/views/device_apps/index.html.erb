@@ -1,0 +1,31 @@
+<%= render 'devices/info' %>
+
+<ul class="nav nav-tabs" style="margin-bottom: 20px;">
+  <li role="presentation"  class="active"><a href="<%= device_device_apps_path  @device %>">应用</a></li>
+  <li role="presentation"><a href="<%= device_intents_path @device %>">事件</a></li>
+</ul>
+
+<%= link_to '添加应用', new_device_device_app_path(@device), class: 'btn btn-default' %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>应用</th>
+      <th>备注</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @device_apps.each do |device_app| %>
+      <tr>
+        <td><%= device_app.app.full_name %></td>
+        <td><%= device_app.note %></td>
+        <td><%= link_to '删除', device_app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

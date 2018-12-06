@@ -1,0 +1,40 @@
+<h1>设备</h1>
+
+<div class="m-v-10">
+<%= link_to '添加设备', new_device_path, class: 'btn btn-default' %>
+<%= link_to '设备类型', device_types_path, class: 'btn btn-link' %>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>名称</th>
+      <th>博物馆</th>
+      <th>设备类型</th>
+      <th>运行</th>
+      <th>地址</th>
+      <th>停用</th>
+      <th>备注</th>
+      <th>控制器</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @devices.each do |device| %>
+      <tr class="<%= device.is_active ? '' : 'text-muted' %>">
+        <td><%= device.id %></td>
+        <td><%= link_to device.name, device_device_apps_path(device) %></td>
+        <td><%= device.museum.try(:name) %></td>
+        <td><%= device.device_type.name %></td>
+        <td><%= device.current_status.try(:name) %></td>
+        <td><%= device.address %></td>
+        <td><%= device.is_active ? '正常' : '停用' %></td>
+        <td><%= device.note %></td>
+        <td><%= link_to device.power_controller.name, power_controller_path(device.power_controller_id) if device.power_controller %></td>
+        <td><%= link_to '编辑', edit_device_path(device) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

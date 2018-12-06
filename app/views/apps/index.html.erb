@@ -1,0 +1,27 @@
+<h1>应用</h1>
+
+<%= link_to '添加应用', new_app_path, class: 'btn btn-default' %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>版本</th>
+      <th>备注</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @apps.each do |app| %>
+      <tr>
+        <td><%= app.name %></td>
+        <td><%= app.version %></td>
+        <td><%= app.note %></td>
+        <td><%= link_to '详情', app %></td>
+        <td><%= link_to '编辑', edit_app_path(app) %></td>
+        <td><%= link_to '删除', app, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,12 @@
+<h3><span class="text-muted"><%= @device.museum.try(:name) %>/</span> #<%= @device.id %> <%= @device.name %> </h3>
+
+<div class="m-v-20">
+  <span>设备类型：</span><span><%= @device.device_type.name %></span>
+  <span class="m-l-10">运行状态：</span><span><%= @device.current_status.try(:name) %></span>
+  <span class="m-l-10">控制器：</span><span><%= link_to @device.power_controller.name, power_controller_path(@device.power_controller) if @device.power_controller.present? %></span>
+  <span class="m-l-10">控制端口：</span><%= @device.port_index %>
+  <span class="m-l-10">开机命令：</span><%= @device.start_cmd.text %>
+  <span class="m-l-10">关机命令：</span><%= @device.stop_cmd.text %>
+
+  <span class="m-l-10"><%= link_to "编辑", edit_device_path(@device) %></span>
+</div>

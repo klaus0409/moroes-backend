@@ -1,0 +1,73 @@
+<div id="museum-control" class="row">
+  <div class="col-md-12">
+    <h3><%= @museum.name %></h3>
+
+
+    <div class="toolbar" style="margin: 10px 0;">
+      <label>
+        <input type="checkbox" v-model="checkAll"> 全选
+      </label>
+
+      <button v-bind:disabled="!hasCheckedDevice()" v-on:click="onStartupApp()" class="btn btn-info m-l-20">启动/安装</button>
+      <button v-bind:disabled="!hasCheckedDevice()" v-on:click="doStartup()" class="btn btn-success m-l-20">开机</button>
+      <button v-bind:disabled="!hasCheckedDevice()" v-on:click="doShutdown()" class="btn btn-danger m-l-20">关机</button>
+      <button v-bind:disabled="!hasCheckedDevice()" v-on:click="broadcastMessage()" class="btn btn-default m-l-20">广播推送消息</button>
+    </div>
+
+    <div class="row border-bottom">
+      <div v-for="(device, index) in devices" class="museum-item col-md-3 col-sm-4 col-xs-12">
+        <div class="thumbnail museum-device hidden-xs">
+          <div class="check">
+            <input type="checkbox" v-model="device.check" v-on:click="doCheckDevice(index)">
+          </div>
+
+          <div class="led">
+            <img v-if="isRunning(device)" src="/led.gif" class="img-responsive" style="max-height: 15px;" alt="">
+            <div v-else class="red"></div>
+          </div>
+
+          <%= image_tag 'pc.png', class: 'img img-circle' %>
+          <div class="text-center" style="font-size: 15px; font-weight: bold;">
+            {{ device.name }}
+          </div>
+          <div>
+            <select v-model="device.app_id">
+              <option value="0">空闲</option>
+              <option v-for="app in device.apps" v-bind:value="app.id">{{ app.name }} {{ app.version }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="museum-device mobile visible-xs-block">
+          <div class="check">
+            <input type="checkbox" v-model="device.check" v-on:click="doCheckDevice(index)">
+          </div>
+
+          <div class="led">
+            <img src="/led.gif" class="img-responsive" style="max-height: 15px;" alt="">
+          </div>
+
+          <div class="row">
+            <div class="col-xs-3" v-on:click="doCheckDevice(index)">
+              <%= image_tag 'pc.png', class: 'img-responsive img-circle' %>
+            </div>
+            <div class="col-xs-9">
+              <div class="" style="font-size: 15px; font-weight: bold;">
+                {{ device.name }}
+              </div>
+              <p class="text-muted">{{ device.address }}</p>
+              <div>
+                <select v-model="device.app_id">
+                  <option value="0">空闲</option>
+                  <option v-for="app in device.apps" v-bind:value="app.id">{{ app.name }} {{ app.version }}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

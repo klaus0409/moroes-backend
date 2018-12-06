@@ -1,0 +1,1 @@
+json.array! @apps, :id, :name, :version, :note

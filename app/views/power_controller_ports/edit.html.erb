@@ -1,0 +1,10 @@
+<h3>编辑端口</h3>
+
+<%= bootstrap_form_for @port do |f| %>
+    <%= f.static_control :index %>
+    <!--
+    <%# f.select :device_id, @museum.devices.map {|d| [d.name, d.id] }, include_blank: true %>
+    -->
+    <%= f.text_area :note %>
+    <%= f.primary %>
+<% end %>

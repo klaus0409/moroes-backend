@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(museum) do |form| %>
+
+    <%= form.text_field :name, id: :museum_name %>
+
+    <%= form.text_field :address, id: :museum_address %>
+
+    <%= form.text_area :note, id: :museum_note %>
+
+    <%= form.submit %>
+<% end %>

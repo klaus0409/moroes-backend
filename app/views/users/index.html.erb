@@ -1,0 +1,28 @@
+<h1>用户</h1>
+<%= link_to '添加用户', new_user_path, class: 'btn btn-default' %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <td>邮箱</td>
+      <td>角色</td>
+      <td>博物馆</td>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <td><%= user.museum.try(:name) %></td>
+        <td><%= link_to '编辑', edit_user_path(user) %></td>
+        <td><%= link_to '删除', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

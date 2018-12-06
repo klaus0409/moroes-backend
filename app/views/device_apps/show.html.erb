@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @device_app.device_id %>
+</p>
+
+<p>
+  <strong>App:</strong>
+  <%= @device_app.app_id %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @device_app.note %>
+</p>
+
+<%= link_to 'Edit', edit_device_app_path(@device_app) %> |
+<%= link_to 'Back', device_apps_path %>

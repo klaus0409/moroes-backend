@@ -1,0 +1,27 @@
+<%= bootstrap_form_for(device, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |form| %>
+    <%= form.text_field :name, id: :device_name %>
+
+    <%= form.select :museum_id, Museum.all.map{|m| [m.name, m.id] }, include_blank: true %>
+
+    <%= form.select :device_type_id, DeviceType.all.map{|d| [d.name, d.id] } %>
+
+    <%= form.text_field :address, id: :device_address %>
+
+    <%= form.collection_radio_buttons :is_active, [['使用', true], ['停用', false]], :last, :first %>
+
+    <%= form.select :default_app_id, device.apps.all.map{|a| [a.full_name, a.id] }, include_blank: true %>
+
+    <%= form.select :power_controller_id, PowerController.all.map{|p| [p.name, p.id] }, include_blank: true %>
+
+    <%= form.select :port_index, [[1, 1], [2, 2]], include_blank: true %>
+
+    <%= form.select :start_cmd, Device.start_cmd.options %>
+
+    <%= form.select :stop_cmd, Device.stop_cmd.options %>
+
+    <%= form.text_area :note, id: :device_note %>
+
+    <%= form.form_group do %>
+      <%= form.submit %>
+    <% end %>
+<% end %>

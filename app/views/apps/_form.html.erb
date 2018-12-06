@@ -1,0 +1,7 @@
+<%= bootstrap_form_for(app) do |form| %>
+    <%= form.text_field :name, id: :app_name %>
+    <%= form.text_field :version, id: :app_version %>
+    <%= form.text_area :note, id: :app_note %>
+
+    <%= form.submit %>
+<% end %>

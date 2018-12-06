@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(power_controller, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |form| %>
+  <%= form.text_field :pid %>
+
+  <%= form.text_field :name %>
+
+  <%= form.select :museum_id, Museum.all.map{|m| [m.name, m.id] }, include_blank: true %>
+
+  <%= form.select :device_type, PowerController.device_type.options %>
+
+  <%= form.text_field :address %>
+
+  <%= form.text_area :note %>
+
+  <%= form.form_group do %>
+        <%= form.primary %>
+        <%= link_to '取消', power_controllers_path, class: 'btn btn-link' %>
+  <% end %>
+<% end %>

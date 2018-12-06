@@ -1,0 +1,64 @@
+<h3><span class="text-muted"><%= @power_controller.museum.name %>/</span> #<%= @power_controller.id %> <%= @power_controller.name %> </h3>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th>唯一标示</th>
+    <th>博物馆</th>
+    <th>设备类型</th>
+    <th>地址</th>
+    <th>状态</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><%= @power_controller.pid %></td>
+    <td><%= @power_controller.museum.name %></td>
+    <td><%= @power_controller.device_type %></td>
+    <td><%= @power_controller.address %></td>
+    <td><%= @power_controller.status_text %></td>
+  </tr>
+  <tr>
+    <th>备注</th>
+    <td colspan="4"><%= @power_controller.note %></td>
+  </tr>
+  </tbody>
+</table>
+
+<h4>关联的设备</h4>
+
+<ul class="list-inline">
+  <% @power_controller.devices.each do |device| %>
+    <li><%= link_to device.name, device_device_apps_path(device) %></li>
+  <% end %>
+</ul>
+
+<h4>端口列表</h4>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>端口</th>
+    <th>状态</th>
+    <!--
+    <th>控制设备</th>
+    -->
+    <th>备注</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @power_controller.ports.each do |port| %>
+      <tr>
+        <td><%= port.index + 1 %></td>
+        <td><%= port.status_text %></td>
+        <!--
+        <td><%= link_to port.device.name, device_path(port.device) if port.device %></td>
+        -->
+        <td><%= port.note %></td>
+        <td><%= link_to "编辑", edit_power_controller_port_path(port) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

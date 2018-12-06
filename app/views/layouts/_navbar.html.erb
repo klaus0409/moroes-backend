@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="<%= root_path %>">博物馆智慧服务设备综合管理平台</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if user_signed_in? && current_user.museum.blank? %>
+      <ul class="nav navbar-nav">
+        <!--
+        <li><a href="<%= users_path %>">用户</a></li>
+        <li><a href="<%= museums_path %>">博物馆 <span class="sr-only">(current)</span></a></li>
+        <li><a href="<%= apps_path %>">应用</a></li>
+        <li><a href="<%= device_types_path %>">设备类型</a></li>
+        <li><a href="<%= devices_path %>">设备</a></li>
+        <li><a href="<%= power_controllers_path %>">控制器</a></li>
+        -->
+      </ul>
+      <% end %>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "API文档", apipie_apipie_path, target: "_blank" %></li>
+        <% if user_signed_in? %>
+            <li><%= link_to "退出", destroy_user_session_path, method: :delete %></li>
+        <% end %>
+      </ul>
+
+      <% if user_signed_in? %>
+          <p class="navbar-text navbar-right"><%= current_user.email %></p>
+      <% end %>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

@@ -1,0 +1,79 @@
+zh-CN:
+  activerecord:
+    models:
+      museum: 博物馆
+      app: 应用
+      device_type: 设备类型
+      device: 设备
+      device_app: 设备应用
+      power_controller: 控制器
+      power_controller_port: 控制器端口
+    attributes:
+      museum:
+        name: 名称
+        address: 地址
+        note: 备注
+      app:
+        name: 名称
+        version: 版本
+        note: 备注
+      device_type:
+        name: 名称
+        note: 备注
+      device:
+        name: 名称
+        museum_id: 博物馆
+        device_type_id: 设备类型
+        address: 地址
+        note: 备注
+        is_active: 使用
+        power_controller_id: 电源控制器
+        port_index: 控制端口
+        start_cmd: 开机指令
+        stop_cmd: 关机指令
+        app_id: 正在运行的应用
+        default_app_id: 默认应用
+      device_app:
+        device_id: 设备
+        app_id: 应用
+        note: 备注
+      power_controller:
+        pid: 唯一标示
+        name: 名称
+        note: 备注
+        museum_id: 博物馆
+        device_type: 设备类型
+        address: 地址
+        status: 状态
+      power_controller_port:
+        index: 端口
+        status: 状态
+        device_id: 设备
+        note: 备注
+  enumerize:
+    device:
+      start_cmd:
+        NONE: 无
+        BOOT_MANUAL: 传统启动(电脑跳线连接启动)
+        BOOT_AUTO: 自动启动(电脑具有上电开机功能)
+        BOOT_PROJECTOR: 与投影机一起启动
+      stop_cmd:
+        NONE: 无
+        SOFT_SHUTDOWN_PC: 软关机
+        SHUTDOWN_PC: 关机并断电
+        SHUTDOWN_PROJECTOR: 与投影机一起关闭并断电
+    power_controller:
+      status:
+        online: 在线
+        offline: 离线
+    power_controller_port:
+      status:
+        open: 吸合
+        close: 断开
+
+    intent:
+      action:
+        start_device: 启动设备
+        stop_device: 关闭设备
+        start_app: 启动应用
+        broadcast_message: 发送广播消息

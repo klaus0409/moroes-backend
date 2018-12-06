@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(device_type) do |form| %>
+
+    <%= form.text_field :name, id: :device_type_name %>
+
+    <%= form.text_area :note, id: :device_type_note %>
+
+    <%= form.submit %>
+<% end %>

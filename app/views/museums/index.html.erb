@@ -1,0 +1,28 @@
+<h1>博物馆</h1>
+
+<%= link_to '新增博物馆', new_museum_path, class: 'btn btn-default' %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>地址</th>
+      <th>备注</th>
+      <th>设备数量</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @museums.each do |museum| %>
+      <tr>
+        <td><%= link_to museum.name, museum %></td>
+        <td><%= museum.address %></td>
+        <td><%= museum.note %></td>
+        <td><%= museum.devices.count %></td>
+        <td><%= link_to '编辑', edit_museum_path(museum) %></td>
+        <td><%= link_to '删除', museum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

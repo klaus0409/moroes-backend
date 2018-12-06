@@ -1,0 +1,33 @@
+<%= render 'devices/info' %>
+
+<ul class="nav nav-tabs" style="margin-bottom: 20px;">
+  <li role="presentation"><a href="<%= device_device_apps_path  @device %>">应用</a></li>
+  <li role="presentation" class="active"><a href="<%= device_intents_path @device %>">事件</a></li>
+</ul>
+
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>时间</th>
+    <th>用户</th>
+    <th>事件</th>
+    <th>应用</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @intents.each do |intent| %>
+      <tr>
+        <td><%= intent.timestamp.strftime('%F %T') %></td>
+        <td><%= intent.user.email %></t>
+        <td><%= intent.action_text %></td>
+        <td><%= intent.app.try(:full_name) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<div class="well well-sm">
+  事件记录只表示用户执行动作，不表示动作执行是否成功。
+</div>
